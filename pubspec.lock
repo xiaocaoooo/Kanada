@@ -317,6 +317,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  kanada_lyric_server:
+    dependency: "direct main"
+    description:
+      path: kanada_lyric_server
+      relative: true
+    source: path
+    version: "0.0.1"
   kanada_volume:
     dependency: "direct main"
     description:

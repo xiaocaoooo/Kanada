@@ -2,6 +2,7 @@ import 'package:kanada/userdata.dart';
 
 class Settings{
   static Future<void> fresh() async {
+    print('Miraiku Settings.fresh');
     final Map json =await UserData('settings.json').get(
         defaultValue: {
           'name': 'Kanade',
@@ -12,6 +13,7 @@ class Settings{
     name = json['name'];
     folders = json['folders'].cast<String>();
     debug = json['debug'];
+    print('Miraiku Settings.fresh ${Settings.toString_()}');
   }
   static Future<void> save() async {
     await UserData('settings.json').set({

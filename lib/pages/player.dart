@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:kanada_volume/kanada_volume.dart';
@@ -88,8 +89,9 @@ class _PlayerPageState extends State<PlayerPage> {
     }
 
     dynamic current = playlist.children[currentIndex];
+    final MediaItem tag =current.tag;
     // 获取新路径
-    final newPath = current.tag.id;
+    final newPath = tag.id;
 
     // 路径未变化时跳过
     if (newPath == metadata?.path) return;
@@ -97,6 +99,12 @@ class _PlayerPageState extends State<PlayerPage> {
     // 更新元数据
     path = newPath;
     metadata = Metadata(path!);
+
+    metadata!.title = tag.title;
+    metadata!.artist = tag.artist;
+    metadata!.album = tag.album;
+    metadata!.duration = tag.duration;
+    metadata!.picturePath = tag.extras?['picture'] as String?;
 
     // 并行加载元数据（带缓存）
     await Future.wait([metadata!.getMetadata(), metadata!.getPicture()]);

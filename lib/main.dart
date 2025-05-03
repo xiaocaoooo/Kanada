@@ -4,7 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:kanada/global.dart';
+import 'package:kanada/lyric_sender.dart';
 import 'package:kanada/settings.dart';
+import 'package:kanada_lyric_server/kanada_lyric_server.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 Future<void> main() async {
@@ -21,6 +23,7 @@ Future<void> main() async {
     androidNotificationOngoing: true,
   );
   Global.player = AudioPlayer();
+  // final async2 =  Settings.fresh();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     // 设置状态栏和导航栏背景为透明
@@ -30,8 +33,10 @@ Future<void> main() async {
     // statusBarIconBrightness: Brightness.dark,
     // systemNavigationBarIconBrightness: Brightness.dark,
   ));
+  // KanadaLyricServerPlugin.setMethodCallHandler(sendLyrics);
+  // KanadaLyricServerPlugin.startForegroundService();
+  // await async2;
   requestPermission();
-  Settings.fresh();
   runApp(const MyApp());
 }
 

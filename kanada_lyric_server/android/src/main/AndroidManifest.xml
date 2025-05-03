@@ -1,0 +1,12 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.hontouniyuki.kanada_lyric_server">
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <application>
+        <!-- 确保包名正确 -->
+        <service
+            android:name=".LyricForegroundService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback" />
+    </application>
+</manifest>

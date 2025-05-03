@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:kanada/pages/folders.dart';
 import 'package:kanada/pages/more.dart';
 import 'package:kanada/pages/search.dart';
+import 'package:kanada_lyric_server/kanada_lyric_server.dart';
 
+import '../lyric_sender.dart';
+import '../settings.dart';
 import '../widgets/float_playing.dart';
 import 'home.dart';
 
@@ -33,6 +36,19 @@ class _AppPageState extends State<AppPage> {
     ],
   ];
   int index = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _init();
+  }
+
+  Future<void> _init() async {
+    Settings.fresh();
+    KanadaLyricServerPlugin.setMethodCallHandler(sendLyrics).then((value){
+      KanadaLyricServerPlugin.startForegroundService();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

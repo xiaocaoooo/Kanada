@@ -68,6 +68,7 @@ class _MusicInfoState extends State<MusicInfo> {
             artist: data.artist,
             duration: data.duration ?? const Duration(seconds: 180),
             artUri: Uri.parse('file://${data.picturePath}'),
+            extras: {'picture': data.picturePath},
           ),
         );
       }),
